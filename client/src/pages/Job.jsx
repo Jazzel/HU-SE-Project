@@ -33,6 +33,7 @@ const Job = ({ job: { loading, job }, getJob, auth: { user } }) => {
               <br />
               <p>{job?.description}</p>
               <p>Salary: {job?.salary} $</p>
+
               <p>
                 Added By: {user?.name} <br />
                 Contact Number: {user?.phone} <br />
