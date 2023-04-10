@@ -29,13 +29,13 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
   // }
 
   const showMoreFields = () => {
-    if (dropdown.current.value === "business") {
-      setRole("business");
+    if (dropdown.current.value === "company") {
+      setRole("company");
       setCol("col-6");
       setHidden("show");
       setWidth("80%");
     } else {
-      setRole("user");
+      setRole("worker");
       setWidth("500px");
       setCol("col-12");
       setHidden("hidden");
@@ -45,11 +45,11 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const role = dropdown.current.value || "user";
+    const role = dropdown.current.value || "worker";
     console.log(e.target.value, role, _role);
 
     let response;
-    if (_role === "business") {
+    if (_role === "company") {
       if (!businessname || !address || !phone) {
         setAlert("Please fill all fields", "danger");
       } else {
@@ -74,177 +74,179 @@ const Register = ({ register, isAuthenticated, setAlert }) => {
   };
 
   return (
-    <div className="login-container">
+    <div className="row" style={{ height: "100vh" }}>
       <div
-        className="main-container shadow-lg"
+        className="col-xs-12 col-sm-12 col-md-6 col-md-6 col-lg-6 col-xl-6 bg-danger"
         style={{
-          width: width,
-          backgroundColor: "white",
-          borderRadius: "5px",
+          backgroundImage: `url(${require("./../assets/login-banner.webp")})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+      <div
+        className="shadow-lg col-xs-12 col-sm-12 col-md-6 col-md-6 col-lg-6 col-xl-6"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
         }}
       >
         <div
           style={{
-            // backgroundImage: `url(${require("./../assets/login-banner.webp")})`,
-            height: "150px",
-            width: "100%",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            width: width,
+            backgroundColor: "white",
             borderRadius: "5px",
           }}
         >
-          <div className="overlay mt-4">
-            <img
-              src={require("./../assets/logo.png")}
-              width="230px"
-              alt="logo"
-            />
+          <div>
+            <h1 className="text-center styled-font">BizzHome</h1>
           </div>
-        </div>
-        <h1 className="text-center mt-2 styled-font text-dark" style={{}}>
-          Register
-        </h1>
+          <h1 className="text-center mt-2  text-dark" style={{}}>
+            Register
+          </h1>
 
-        <br />
-        <div
-          className={`col-12 `}
-          style={{
-            justifyContent: "center",
-            display: "flex",
-            borderRadius: "5px",
-            flexDirection: "column",
-          }}
-        >
-          <form
-            className={`form m-auto`}
-            autoComplete="false"
-            onSubmit={(e) => handleSubmit(e)}
+          <br />
+          <div
+            className={`col-12 `}
+            style={{
+              justifyContent: "center",
+              display: "flex",
+              borderRadius: "5px",
+              flexDirection: "column",
+            }}
           >
-            <div className="row px-5">
-              <Alert style={{ width: "80%" }} />
-            </div>
-            <div className="row p-4">
-              <div className={`${col}`}>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                    ab
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name"
-                    value={name}
-                    autoComplete="false"
-                    onChange={(e) => setName(e.target.value)}
-                    aria-label="name"
-                  />
-                </div>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                    @
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Email"
-                    autoComplete="false"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    aria-label="email"
-                  />
-                </div>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                    **
-                  </span>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    aria-label="Password"
-                  />
-                </div>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                    {"&"}
-                  </span>
-                  <select
-                    className="form-control"
-                    value={_role}
-                    ref={dropdown}
-                    onChange={(e) => {
-                      setRole(e.target.value);
-                      showMoreFields();
-                    }}
-                  >
-                    <option value="user">User</option>
-                    <option value="business">Business Owner</option>
-                  </select>
-                </div>
+            <form
+              className={`form m-auto`}
+              autoComplete="false"
+              onSubmit={(e) => handleSubmit(e)}
+            >
+              <div className="row px-5">
+                <Alert style={{ width: "80%" }} />
               </div>
-              <div className={`${col} ${hidden}`}>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                    ab
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Business Name"
-                    autoComplete="false"
-                    value={businessname}
-                    onChange={(e) => setBusinessname(e.target.value)}
-                    aria-label="businessname"
-                  />
+              <div className="row p-4">
+                <div className={`${col}`}>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      ab
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Name"
+                      value={name}
+                      autoComplete="false"
+                      onChange={(e) => setName(e.target.value)}
+                      aria-label="name"
+                    />
+                  </div>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      @
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Email"
+                      autoComplete="false"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      aria-label="email"
+                    />
+                  </div>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      **
+                    </span>
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      aria-label="Password"
+                    />
+                  </div>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      {"&"}
+                    </span>
+                    <select
+                      className="form-control"
+                      value={_role}
+                      ref={dropdown}
+                      onChange={(e) => {
+                        setRole(e.target.value);
+                        showMoreFields();
+                      }}
+                    >
+                      <option value="worker">Worker</option>
+                      <option value="company">Company Owner</option>
+                    </select>
+                  </div>
                 </div>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                    ab
-                  </span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Address"
-                    autoComplete="false"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    aria-label="address"
-                  />
+                <div className={`${col} ${hidden}`}>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      ab
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Business Name"
+                      autoComplete="false"
+                      value={businessname}
+                      onChange={(e) => setBusinessname(e.target.value)}
+                      aria-label="businessname"
+                    />
+                  </div>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      ab
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Address"
+                      autoComplete="false"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      aria-label="address"
+                    />
+                  </div>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">
+                      12
+                    </span>
+                    <input
+                      type="number"
+                      minLength={13}
+                      className="form-control"
+                      placeholder="Phone Number"
+                      autoComplete="false"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      aria-label="phone"
+                    />
+                  </div>
                 </div>
-                <div className="input-group mb-3">
-                  <span className="input-group-text" id="basic-addon1">
-                    12
-                  </span>
-                  <input
-                    type="number"
-                    minLength={13}
-                    className="form-control"
-                    placeholder="Phone Number"
-                    autoComplete="false"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    aria-label="phone"
-                  />
-                </div>
-              </div>
 
-              <div className="text-center">
-                <button type="submit" className="btn btn-dark w-100">
-                  Register
-                </button>
+                <div className="text-center">
+                  <button type="submit" className="btn btn-dark w-100">
+                    Register
+                  </button>
+                </div>
+                <br />
+                <div className="text-center">
+                  Already a user?{" "}
+                  <Link className="text-dark" to="/login">
+                    Login here.
+                  </Link>
+                </div>
+                <br />
               </div>
-              <br />
-              <div className="text-center">
-                Already a user?{" "}
-                <Link className="text-dark" to="/login">
-                  Login here.
-                </Link>
-              </div>
-              <br />
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>

@@ -22,26 +22,24 @@ const EmailCode = ({ setAlert, verifyCode }) => {
   };
 
   return (
-    <div className="login-container">
-      <div className="inner-container shadow-lg">
-        <div
-          style={{
-            // backgroundImage: `url(${require("./../assets/login-banner.webp")})`,
-            height: "150px",
-            width: "100%",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            borderRadius: "5px",
-          }}
-        >
-          <div className="overlay mt-4">
-            <img
-              src={require("./../assets/logo.png")}
-              width="230px"
-              alt="logo"
-            />
-          </div>
-        </div>
+    <div className="row" style={{ height: "100vh" }}>
+      <div
+        className="col-xs-12 col-sm-12 col-md-6 col-md-6 col-lg-6 col-xl-6 bg-danger"
+        style={{
+          backgroundImage: `url(${require("./../assets/login-banner.webp")})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+      <div
+        className="shadow-lg col-xs-12 col-sm-12 col-md-6 col-md-6 col-lg-6 col-xl-6"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
         <div
           className="col-12"
           style={{
@@ -51,7 +49,10 @@ const EmailCode = ({ setAlert, verifyCode }) => {
             borderRadius: "5px",
           }}
         >
-          <div className="p-4">
+          <div>
+            <h1 className="text-center styled-font">BizzHome</h1>
+          </div>
+          <div className="alert alert-success p-4">
             <h1 className="text-center">Email Sent</h1>
             <br />
             <h6 className="text-center">

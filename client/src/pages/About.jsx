@@ -15,7 +15,7 @@ const Tourists = ({}) => {
           className="container  mt-5"
           style={{ paddingLeft: "8%", paddingTop: "2%" }}
         >
-          <h1 className="text-light">Tourists Us</h1>
+          <h1 className="text-light">About Us</h1>
           <h6 className="text-light pt-3">
             <i>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque

@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb+srv://arsh:arsh1234@cluster0.pzlydgu.mongodb.net/?retryWrites=true&w=majority",
+  "mongoURI": "mongodb+srv://jazz:jazz1234@cluster0.jqp0asb.mongodb.net/?retryWrites=true&w=majority",
   "JWTsecretToken": "cyprodev",
   "user": "jazzelmehmood4@@gmail.com",
   "pass": "puntpfsjvcwgeahq",

@@ -8,7 +8,6 @@ const config = require("config");
 const nodemailer = require("nodemailer");
 
 const User = require("../../models/User");
-const { sendConfirmationEmail } = require("../../config/nodemailer");
 const auth = require("../../middlewares/auth");
 const secretToken = config.get("JWTsecretToken");
 
@@ -21,7 +20,7 @@ for (let i = 0; i < 25; i++) {
 
 const URL =
   process.env.NODE_ENV === "production"
-    ? "https://travel-care.herokuapp.com"
+    ? "https://bizzhome.herokuapp.com"
     : "http://localhost:3000";
 
 // @route    GET api/users
@@ -99,7 +98,7 @@ router.post(
         to: email,
         subject: "Please confirm your account",
         html: `<h1>Email Confirmation</h1>
-            <h2>Welcome ${name} to TravelCare</h2>
+            <h2>Welcome ${name} to BizzHome</h2>
             <p>Thank you for joining our team. Click the following link to confirm and activate your new account:</p>
             <a href=${URL}/confirm/${email}/${token}}>${URL}/confirm/${email}/${token}</a>
             <br/>

@@ -19,7 +19,7 @@ const Footer = () => {
       <div className="container-fluid text-center text-md-left shadow-sm">
         <div className="row">
           <div className="col-md-12 mt-md-0 mt-3 pb-5 mb-3">
-            <h1 className="text styled-font">Travel Care</h1>
+            <h1 className="text styled-font">BizzHome</h1>
             <div className="row mt-3">
               <div className="col">
                 <a href="#">
@@ -87,7 +87,7 @@ const Footer = () => {
       <div className="footer-copyright text-center py-3">
         © {new Date().getFullYear()} Copyright:{" "}
         <a href="/" className="text-light font-weight-bold">
-          Travel Care
+          BizzHome
         </a>
       </div>
     </footer>

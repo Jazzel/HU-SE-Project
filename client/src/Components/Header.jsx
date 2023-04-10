@@ -8,7 +8,7 @@ const Header = ({ auth: { role } }) => {
       <nav className="navbar navbar-expand-lg bg-transparent navbar-dark">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            <h1 className="text styled-font">Travel Care</h1>
+            <h1 className="text styled-font">BizzHome</h1>
           </Link>
           <button
             className="navbar-toggler"
@@ -42,11 +42,6 @@ const Header = ({ auth: { role } }) => {
               <li className="nav-item">
                 <Link className="nav-link" to="/about">
                   About Us
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/cart">
-                  Cart
                 </Link>
               </li>
             </ul>

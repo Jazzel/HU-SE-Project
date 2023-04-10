@@ -23,17 +23,8 @@ import EmailCode from "./pages/EmailCode";
 import ChangePassword from "./pages/ChangePassword";
 import EmailSent from "./pages/EmailSent";
 import ConfirmAccount from "./pages/ConfirmAccount";
-import AddBusiness from "./pages/AddBusiness";
-import UpdateBusiness from "./pages/UpdateBusiness";
-import BusinessDetail from "./pages/BusinessDetail";
-import Business from "./pages/Business";
 import AdminRoute from "./routing/AdminRoute";
 import UserDashboard from "./pages/UserDashboard";
-import Cart from "./pages/Cart";
-import Discounts from "./pages/Discounts";
-import AddDiscount from "./pages/AddDiscount";
-import EditDiscount from "./pages/EditDiscount";
-import Tourists from "./pages/Tourists";
 
 export const HOST = "http://localhost:5000";
 
@@ -62,7 +53,6 @@ const App = () => {
             <Route path="/*">
               <Route index element={<Home />} />
               <Route path="about" element={<About />} />
-              <Route path="business" element={<Business />} />
               <Route path="contact" element={<Contact />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
@@ -90,70 +80,7 @@ const App = () => {
                   </AdminRoute>
                 }
               />
-              <Route
-                path="add-business"
-                element={
-                  <AdminRoute>
-                    <AddBusiness />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="update-business/:id"
-                element={
-                  <AdminRoute>
-                    <UpdateBusiness />
-                  </AdminRoute>
-                }
-              />
-              <Route
-                path="business/:id"
-                element={
-                  <PrivateRoute>
-                    <BusinessDetail />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="discounts"
-                element={
-                  <PrivateRoute>
-                    <Discounts />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="add-discount"
-                element={
-                  <PrivateRoute>
-                    <AddDiscount />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="edit-discount/:id"
-                element={
-                  <PrivateRoute>
-                    <EditDiscount />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="tourists"
-                element={
-                  <PrivateRoute>
-                    <Tourists />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="cart"
-                element={
-                  <PrivateRoute>
-                    <Cart />
-                  </PrivateRoute>
-                }
-              />
+
               <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
           </Routes>
