@@ -5,7 +5,7 @@ import {
   JOB_ERROR,
   REMOVE_JOB,
   UPDATE_JOB,
-} from "./types";
+} from "../actions/types";
 
 const initialState = {
   jobs: [],
@@ -14,7 +14,7 @@ const initialState = {
   error: null,
 };
 
-export default function business(state = initialState, action) {
+export default function job(state = initialState, action) {
   const { payload, type } = action;
   switch (type) {
     case GET_JOBS:

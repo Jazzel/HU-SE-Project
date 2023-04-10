@@ -27,6 +27,7 @@ import AdminRoute from "./routing/AdminRoute";
 import UserDashboard from "./pages/UserDashboard";
 import AddJob from "./pages/AddJob";
 import EditJob from "./pages/EditJob";
+import Job from "./pages/Job";
 
 export const HOST = "http://localhost:5000";
 
@@ -95,6 +96,14 @@ const App = () => {
                 element={
                   <AdminRoute>
                     <EditJob />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="job/:id"
+                element={
+                  <AdminRoute>
+                    <Job />
                   </AdminRoute>
                 }
               />

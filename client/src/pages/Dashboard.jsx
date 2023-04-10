@@ -3,36 +3,24 @@ import { connect } from "react-redux";
 import DashboardHeader from "../Components/DashboardHeader";
 
 import PropTypes from "prop-types";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Alert from "../Components/Alert";
 import Footer from "../Components/Footer";
-import { getUsers, deactivateUser, logout } from "../actions/auth";
+import { deactivateUser, logout } from "../actions/auth";
+import { getJobs, removeJob } from "../actions/jobs";
 
 const Dashboard = ({
   auth: { role, username, users, status },
-  deactivateUser,
-  deleteBusiness,
-  getUsers,
-  isAuthenticated,
+  job: { loading, jobs },
+  getJobs,
+  removeJob,
   logout,
 }) => {
   const navigate = useNavigate();
 
-  const [getAllServices, setGetAllServices] = useState(false);
-
   useEffect(() => {
-    if (role === "admin") {
-      getUsers();
-    }
-  }, [getUsers, role]);
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-
-  if (role === "user") {
-    return <Navigate to="/user-dashboard" />;
-  }
+    getJobs();
+  }, [getJobs]);
 
   if (status === "Blocked") {
     navigate("/login");
@@ -45,51 +33,60 @@ const Dashboard = ({
 
       <div className="container p-5">
         <Alert />
-        {role === "admin" && (
+        {role === "company" && (
           <>
             <div className="row">
-              <div className="col-12">
-                <h1>Users</h1>
+              <div className="col-10">
+                <h1>Jobs</h1>
+              </div>
+              <div className="col-2">
+                <Link to={"/job/add"} className={"w-100 btn btn-dark"}>
+                  + Add Job
+                </Link>
               </div>
             </div>
 
             <table className="table table-striped">
               <thead className="thead-dark ">
                 <tr>
-                  <th>Username</th>
-                  <th>Role</th>
+                  <th>Title</th>
+                  <th>Location</th>
+                  <th>Salary</th>
                   <th>Status</th>
-                  <th>Discount</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {users && role === "admin" && users.length > 0 ? (
-                  users
-                    .filter((user) => user.role !== "admin")
-                    .map(({ _id, name, role, status }) => (
-                      <tr key={_id}>
-                        <td scope="row">{name}</td>
-                        <td>{role}</td>
-                        <td>{status}</td>
-                        <td>
-                          {status !== "Pending" && (
-                            <button
-                              className="btn btn-danger"
-                              onClick={() => deactivateUser(_id)}
-                            >
-                              {status === "Active" ? "Deactivate" : "Activate"}
-                            </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))
+                {jobs && role === "company" && jobs.length > 0 ? (
+                  jobs.map(({ _id, title, location, salary, status }) => (
+                    <tr key={_id}>
+                      <td scope="row">{title}</td>
+                      <td>{location}</td>
+                      <td>{salary}</td>
+                      <td>{status}</td>
+                      <td>
+                        <Link
+                          to={`/job/${_id}`}
+                          className={" btn btn-dark"}
+                          style={{ marginRight: "5px" }}
+                        >
+                          View
+                        </Link>
+                        <button
+                          className=" btn btn-danger"
+                          onClick={() => removeJob(_id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))
                 ) : (
                   //   .map(<></>)
                   // <></>
                   <tr>
-                    <td colSpan={3} style={{ textAlign: "center" }}>
-                      No users found !
+                    <td colSpan={5} style={{ textAlign: "center" }}>
+                      No jobs found !
                     </td>
                   </tr>
                 )}
@@ -109,18 +106,17 @@ const Dashboard = ({
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  isAuthenticated: state.auth.isAuthenticated,
+  job: state.job,
 });
 
 Dashboard.propTypes = {
-  getUsers: PropTypes.func.isRequired,
+  getJobs: PropTypes.func.isRequired,
   deactivateUser: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, {
-  getUsers,
-  deactivateUser,
   logout,
+  getJobs,
+  removeJob,
 })(Dashboard);
