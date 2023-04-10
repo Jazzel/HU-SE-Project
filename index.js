@@ -35,6 +35,7 @@ app.use(
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/contacts", require("./routes/api/contact"));
+app.use("/api/jobs", require("./routes/api/jobs"));
 
 app.post(
   "/api/change-password",

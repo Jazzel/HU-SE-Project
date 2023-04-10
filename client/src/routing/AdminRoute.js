@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 const AdminRoute = ({ auth: { isAuthenticated, loading, role }, children }) => {
-  if (!isAuthenticated && !loading && role !== "admin") {
+  if (!isAuthenticated && !loading && role !== "company") {
     return <Navigate to="/login" replace />;
   }
   return <>{children}</>;

@@ -25,6 +25,8 @@ import EmailSent from "./pages/EmailSent";
 import ConfirmAccount from "./pages/ConfirmAccount";
 import AdminRoute from "./routing/AdminRoute";
 import UserDashboard from "./pages/UserDashboard";
+import AddJob from "./pages/AddJob";
+import EditJob from "./pages/EditJob";
 
 export const HOST = "http://localhost:5000";
 
@@ -77,6 +79,22 @@ const App = () => {
                 element={
                   <AdminRoute>
                     <UserDashboard />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="job/add"
+                element={
+                  <AdminRoute>
+                    <AddJob />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="job/edit/:id"
+                element={
+                  <AdminRoute>
+                    <EditJob />
                   </AdminRoute>
                 }
               />

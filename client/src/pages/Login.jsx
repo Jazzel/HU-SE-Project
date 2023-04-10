@@ -16,8 +16,8 @@ const Login = ({ login, isAuthenticated, auth: { role } }) => {
   };
 
   if (isAuthenticated) {
-    if (role === "user") {
-      return <Navigate to="/user-dashboard" />;
+    if (role === "worker") {
+      return <Navigate to="/" />;
     } else {
       return <Navigate to="/dashboard" />;
     }

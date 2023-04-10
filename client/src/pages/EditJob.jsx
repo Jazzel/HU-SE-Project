@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { setAlert } from "../actions/alert";
-import { addJob } from "../actions/jobs";
 import Alert from "../Components/Alert";
 import DashboardHeader from "../Components/DashboardHeader";
 import Footer from "../Components/Footer";
 
-const AddJob = ({ addJob, setAlert, auth: { user, role } }) => {
+import { getJob, updateJob } from "../actions/jobs";
+
+const EditJob = ({ updateJob, getJob, setAlert, auth: { user } }) => {
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [location, setLocation] = React.useState();
   const [salary, setSalary] = React.useState();
+  const [status, setStatus] = React.useState("");
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchJob = async () => {
+      const job = await getJob(id);
+      setTitle(job.title);
+      setDescription(job.description);
+      setLocation(job.location);
+      setSalary(job.salary);
+      setStatus(job.status);
+    };
+
+    fetchJob();
+  }, [getJob, id]);
 
   const navigate = useNavigate();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title !== "" && description !== "" && salary > 0 && location !== "") {
@@ -24,16 +40,15 @@ const AddJob = ({ addJob, setAlert, auth: { user, role } }) => {
         addedBy: user?._id,
         location,
         salary,
+        status,
       };
 
-      console.log(formData);
-
-      const response = await addJob(formData);
+      const response = await updateJob(id, formData);
       if (response.status === 200) {
         navigate("/dashboard");
       }
     } else {
-      setAlert("All fields are required", "danger");
+      setAlert("All field are required", "danger");
     }
   };
 
@@ -43,7 +58,7 @@ const AddJob = ({ addJob, setAlert, auth: { user, role } }) => {
 
       <div className="container p-5">
         <form onSubmit={handleSubmit}>
-          <h1>Add Job</h1>
+          <h1>Update Job</h1>
           <br />
 
           <Alert />
@@ -107,7 +122,7 @@ const AddJob = ({ addJob, setAlert, auth: { user, role } }) => {
           </div>
           <div class="form-group w-50 mt-4">
             <button className="btn btn-primary w-100" type="submit">
-              Add Job
+              Update Job
             </button>
           </div>
         </form>
@@ -125,6 +140,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addJob,
+  updateJob,
   setAlert,
-})(AddJob);
+  getJob,
+})(EditJob);
