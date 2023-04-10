@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(assets/login-banner.webp);
+  background-size: cover;
+  background-position: center;
+  background-color: #03729b;
+  /* background-color: red; */
+}
+
+.inner-container {
+  width: 500px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .inner-container {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .inner-container {
+    width: 290px;
+  }
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.styled-font {
+  font-family: "Pacifico", cursive;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.main-container {
+  transition: width 1.2s;
+}
+
+.styled-back {
+  font-size: 200px;
+  transform: rotate(-20deg);
+  position: absolute;
+  overflow: hidden;
+  bottom: -10px;
+  right: 0;
+  opacity: 0.2;
+}
