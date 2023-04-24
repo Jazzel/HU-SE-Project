@@ -44,6 +44,8 @@ const EditJob = ({ updateJob, getJob, setAlert, auth: { user } }) => {
       };
 
       const response = await updateJob(id, formData);
+      navigate("/dashboard");
+
       if (response.status === 200) {
         navigate("/dashboard");
       }

@@ -72,6 +72,13 @@ const Dashboard = ({
                         >
                           View
                         </Link>
+                        <Link
+                          to={`/job/edit/${_id}`}
+                          className={" btn btn-dark"}
+                          style={{ marginRight: "5px" }}
+                        >
+                          Update
+                        </Link>
                         <button
                           className=" btn btn-danger"
                           onClick={() => removeJob(_id)}

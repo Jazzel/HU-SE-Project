@@ -16,7 +16,6 @@ import store from "./store";
 import { Provider } from "react-redux";
 import { loadUser } from "./actions/auth";
 import { useEffect, useLayoutEffect } from "react";
-import PrivateRoute from "./routing/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import EmailCode from "./pages/EmailCode";

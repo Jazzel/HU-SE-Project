@@ -21,14 +21,14 @@ console.log(env);
 
 const URL =
   env === "production"
-    ? "https://travel-care.herokuapp.com"
+    ? "https://bizzhome.herokuapp.com"
     : "http://localhost:3000";
 
 app.use(express.json({ extended: false }));
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://travel-care.herokuapp.com"],
+    origin: ["http://localhost:3000", "https://bizzhome.herokuapp.com"],
   })
 );
 
@@ -144,7 +144,7 @@ app.post(
         to: email,
         subject: "Password Reset Request",
         html: `<h1>Password Reset Request</h1>
-            <h2>Welcome ${user.name} to TravelCare</h2>
+            <h2>Welcome ${user.name} to BizzHome</h2>
             <p>We heard you forgot your account. Here's the link to reset your  account password:</p>
             <a href=${URL}/reset/${email}/${user.confirmationCode}}>${URL}/reset/${email}/${user.confirmationCode}</a>
             <br/>
