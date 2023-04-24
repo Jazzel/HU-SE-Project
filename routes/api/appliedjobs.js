@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const AppliedJob = require("../../models/AppliedJob");
-const { default: auth } = require("../../client/src/reducers/auth");
+const auth = require("../../middlewares/auth");
 
 // @route   GET api/appliedjobs/:id
 // @desc    Get appliedjobs by user id
@@ -38,3 +38,5 @@ router.post("/", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+module.exports = router;

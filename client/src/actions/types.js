@@ -30,3 +30,7 @@ export const JOB_ERROR = "JOB_ERROR";
 export const GET_CONTACTS = "GET_CONTACTS";
 export const CONTACT_ERROR = "CONTACT_ERROR";
 export const ADD_CONTACT = "ADD_CONTACT";
+
+export const ADD_APPLIED_JOB = "ADD_APPLIED_JOB";
+export const GET_APPLIED_JOBS = "GET_APPLIED_JOBS";
+export const APPLIED_JOB_ERROR = "APPLIED_JOB_ERROR";

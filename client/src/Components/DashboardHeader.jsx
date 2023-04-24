@@ -46,6 +46,15 @@ const DashboardHeader = ({ auth: { user, role }, logout }) => {
                   </a>
                 </li>
               )}
+              {role === "worker" && (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" aria-current="page" to="/jobs">
+                      Jobs
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
             <span className="navbar-text">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">

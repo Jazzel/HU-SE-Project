@@ -27,6 +27,10 @@ const Dashboard = ({
     logout();
   }
 
+  if (role !== "company") {
+    navigate("/user-dashboard");
+  }
+
   return (
     <div>
       <DashboardHeader />

@@ -53,7 +53,7 @@ const EmailCode = ({ setAlert, verifyCode }) => {
         >
           <div>
             <h1 className="text-center styled-font">BizzHome</h1>
-          </div>
+          </div>  
           <div className="p-4">
             <h1 className="text-center">Email Confimation</h1>
             <br />

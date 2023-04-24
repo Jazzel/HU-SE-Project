@@ -20,7 +20,7 @@ for (let i = 0; i < 25; i++) {
 
 const URL =
   process.env.NODE_ENV === "production"
-    ? "https://bizzhome.herokuapp.com"
+    ? "https://bizzhomea.herokuapp.com"
     : "http://localhost:3000";
 
 // @route    GET api/users
