@@ -13,6 +13,7 @@ const AppliedJobs = ({
   appliedjob: { loading, appliedjobs },
   job: { jobs },
   getAppliedJobs,
+  getJobs,
 }) => {
   useEffect(() => {
     getJobs();
@@ -54,7 +55,7 @@ const AppliedJobs = ({
           appliedjobs.applied.map((appliedjob) => {
             const job = find(appliedjob.job);
             return (
-              <div className="card shadow mt-3">
+              <div className="card shadow mt-3" key={appliedjob._id}>
                 <div className="card-body p-5">
                   <div className="styled-back">@</div>
                   <h3>
@@ -65,9 +66,9 @@ const AppliedJobs = ({
                   <p>Salary: {job?.salary} $</p>
 
                   <p>
-                    Added By: {user?.name} <br />
-                    Contact Number: {user?.phone} <br />
-                    Address: {user?.address} <br />
+                    Added By: {job?.name} <br />
+                    Contact Number: {job?.phone} <br />
+                    Address: {job?.address} <br />
                     Last updated:{" "}
                     {new Date(`${job?.updatedAt}`).toLocaleString()}
                   </p>

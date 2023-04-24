@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Job = require("../../models/Jobs");
+const User = require("../../models/User");
 
 // @route   GET api/jobs
 // @desc    Get all jobs
@@ -9,10 +10,27 @@ const Job = require("../../models/Jobs");
 router.get("/", async (req, res) => {
   try {
     const jobs = await Job.find();
-    res.json(jobs);
+
+    const jobsWithUserData = [];
+
+    for (let job of jobs) {
+      const user = await User.findById(job.addedBy);
+
+      let newJob = {
+        ...job["_doc"],
+        name: user.name,
+        businessname: user.businessname,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+      };
+      jobsWithUserData.push(newJob);
+    }
+
+    return res.status(200).json(jobsWithUserData);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 });
 

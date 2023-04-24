@@ -33,8 +33,6 @@ export const getAppliedJobs = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`${HOST}/api/jobs/apply/${id}`);
 
-    console.log(res.data);
-
     dispatch({
       type: GET_APPLIED_JOBS,
       payload: res.data,

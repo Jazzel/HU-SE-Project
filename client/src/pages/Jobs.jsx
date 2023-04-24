@@ -41,8 +41,6 @@ const Jobs = ({
 
     const response = await applyForJob(form);
 
-    console.log(response);
-
     if (response.status === 200) {
       // toggle();
       window.location.reload();
@@ -52,8 +50,6 @@ const Jobs = ({
   };
 
   const search = (job) => {
-    console.log(appliedjobs.app);
-
     return (
       appliedjobs &&
       appliedjobs.applied &&
@@ -107,9 +103,9 @@ const Jobs = ({
                   <p>Salary: {job?.salary} $</p>
 
                   <p>
-                    Added By: {user?.name} <br />
-                    Contact Number: {user?.phone} <br />
-                    Address: {user?.address} <br />
+                    Added By: {job?.name} <br />
+                    Contact Number: {job?.phone} <br />
+                    Address: {job?.address} <br />
                     Last updated:{" "}
                     {new Date(`${job?.updatedAt}`).toLocaleString()}
                   </p>

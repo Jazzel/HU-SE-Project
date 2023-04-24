@@ -48,7 +48,7 @@ const Header = ({ isAuthenticated, auth: { role }, logout }) => {
             </ul>
             <span className="navbar-text">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                {role === "company" && (
+                {(role === "company" || role === "worker") && (
                   <>
                     <li className="nav-item">
                       <Link className="nav-link" to="/dashboard">
