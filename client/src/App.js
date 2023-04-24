@@ -28,7 +28,7 @@ import AddJob from "./pages/AddJob";
 import EditJob from "./pages/EditJob";
 import Job from "./pages/Job";
 
-export const HOST = "http://localhost:5000";
+export const HOST = "http://localhost:5001";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
