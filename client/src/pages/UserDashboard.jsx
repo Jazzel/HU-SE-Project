@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import DashboardHeader from "../Components/DashboardHeader";
 import PropTypes from "prop-types";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getCurrentProfile, deleteAccountAndProfile } from "../actions/profile";
 import DashboardActions from "./DashboardActions";
 import Education from "./Education";
@@ -11,15 +11,20 @@ import Experience from "./Experience";
 const UserDashboard = ({
   isAuthenticated,
   getCurrentProfile,
-  auth: { user },
+  auth: { user, role },
   profile: { profile, loading },
   deleteAccountAndProfile,
 }) => {
+  const navigate = useNavigate();
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
   if (!isAuthenticated) {
     return <Navigate to="/login" />;
+  }
+
+  if (role !== "worker") {
+    return navigate("/dashboard");
   }
 
   return (

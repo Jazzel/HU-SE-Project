@@ -82,7 +82,7 @@ const Jobs = ({
               alignItems: "center",
             }}
           >
-            <Link to="applied-jobs" className="btn btn-dark float-right">
+            <Link to="/applied-jobs" className="btn btn-dark float-right">
               Show applied jobs
             </Link>
           </div>
@@ -97,15 +97,39 @@ const Jobs = ({
             .filter((job) => job.status === "UnAssigned" && !search(job._id))
             .map((job) => (
               <div className="card mb-3" key={job._id}>
-                <div className="card-body">
-                  <h5 className="card-title">{job.title}</h5>
-                  <p className="card-text">{job.description}</p>
-                  <p className="card-text">Expected Salary: {job.salary}</p>
-                  <p className="card-text">Location: {job.location}</p>
-                  <p className="card-text">Status: Hiring</p>
+                <div className="card-body p-5">
+                  <div className="styled-back">@</div>
+                  <h3>
+                    {job?.title} by @{user?.businessname} in {job?.location}
+                  </h3>
+                  <br />
+                  <p>{job?.description}</p>
+                  <p>Salary: {job?.salary} $</p>
+
+                  <p>
+                    Added By: {user?.name} <br />
+                    Contact Number: {user?.phone} <br />
+                    Address: {user?.address} <br />
+                    Last updated:{" "}
+                    {new Date(`${job?.updatedAt}`).toLocaleString()}
+                  </p>
+                  <small
+                    className="bg-primary text-light"
+                    style={{
+                      borderRadius: 5,
+                      paddingRight: 10,
+                      paddingLeft: 10,
+                      paddingTop: 5,
+                      paddingBottom: 5,
+                    }}
+                  >
+                    Status: <span className="">Hiring</span>
+                  </small>
+                  <br />
+                  <br />
                   {!search(job._id) ? (
                     <button
-                      className="btn btn-dark"
+                      className="btn btn-dark w-25"
                       onClick={() => applyJob(job)}
                     >
                       Apply

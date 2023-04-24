@@ -32,6 +32,7 @@ import AddEducation from "./pages/AddEducation";
 import AddExperience from "./pages/AddExperience";
 import EditProfile from "./pages/EditProfile";
 import Jobs from "./pages/Jobs";
+import AppliedJobs from "./pages/AppliedJobs";
 
 export const HOST = "http://localhost:5001";
 
@@ -140,6 +141,14 @@ const App = () => {
                 element={
                   <AdminRoute>
                     <Job />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="applied-jobs"
+                element={
+                  <AdminRoute>
+                    <AppliedJobs />
                   </AdminRoute>
                 }
               />
