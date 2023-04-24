@@ -5,7 +5,10 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  appliedjobs: [],
+  appliedjobs: {
+    applied: [],
+    user: null,
+  },
   loading: true,
   error: null,
 };
@@ -23,7 +26,10 @@ export default function appliedjob(state = initialState, action) {
     case ADD_APPLIED_JOB:
       return {
         ...state,
-        appliedjobs: [payload, ...state.jobs],
+        appliedjobs: {
+          ...state,
+          applied: [payload, ...state.appliedjobs.applied],
+        },
         loading: false,
       };
 

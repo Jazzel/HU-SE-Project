@@ -10,10 +10,14 @@ const auth = require("../../middlewares/auth");
 router.get("/:id", auth, async (req, res) => {
   try {
     const appliedjobs = await AppliedJob.find({ user: req.params.id });
-    res.json(appliedjobs);
+
+    if (!appliedjobs)
+      return res.status(404).json({ msg: "Applied jobs not found" });
+
+    return res.json(appliedjobs[0]);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 });
 
@@ -21,21 +25,32 @@ router.get("/:id", auth, async (req, res) => {
 // @desc    Create a appliedjob
 // @access  Public
 router.post("/", auth, async (req, res) => {
+  console.log("dsadsadas");
+
   const { job, user, description } = req.body;
 
   try {
-    let appliedjob = new AppliedJob({
-      job,
-      user,
-      description,
-    });
+    // find applied jobs with the user
+    let appliedjob = await AppliedJob.findOne({ user: user });
 
-    await appliedjob.save();
+    if (appliedjob) {
+      appliedjob.applied = [{ job, description }, ...appliedjob.applied];
+      await appliedjob.save();
 
-    res.json(appliedjob);
+      return res.status(200).json(appliedjob);
+    } else {
+      let newAppliedJob = new AppliedJob({
+        user,
+        appliedjobs: [{ job, description }],
+      });
+
+      await newAppliedJob.save();
+
+      return res.status(200).json(newAppliedJob);
+    }
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    return res.status(500).send("Server Error");
   }
 });
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DashboardHeader from "../Components/DashboardHeader";
 import Footer from "../Components/Footer";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getJobs } from "../actions/jobs";
 import { connect } from "react-redux";
 
@@ -20,8 +20,10 @@ const Jobs = ({
 }) => {
   useEffect(() => {
     getJobs();
-    getAppliedJobs();
-  }, [getJobs, getAppliedJobs]);
+    if (user) {
+      getAppliedJobs(user._id);
+    }
+  }, [getJobs, getAppliedJobs, user]);
 
   const [selectedJob, setSelectedJob] = useState(null);
   const [description, setDescription] = useState("");
@@ -40,11 +42,24 @@ const Jobs = ({
     const response = await applyForJob(form);
 
     console.log(response);
+
     if (response.status === 200) {
-      toggle();
+      // toggle();
+      window.location.reload();
     } else {
       setAlert("Something went wrong", "danger");
     }
+  };
+
+  const search = (job) => {
+    console.log(appliedjobs.app);
+
+    return (
+      appliedjobs &&
+      appliedjobs.applied &&
+      appliedjobs.applied.length > 0 &&
+      appliedjobs.applied.filter((applied) => applied.job === job).length > 0
+    );
   };
 
   const [modal, setModal] = useState(false);
@@ -55,13 +70,31 @@ const Jobs = ({
     <div>
       <DashboardHeader />
       <section className="container p-5">
-        <h1>Trending Jobs</h1>
+        <div className="row">
+          <div className="col-md-6">
+            <h1>Trending Jobs</h1>
+          </div>
+          <div
+            className="col-md-6"
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              alignItems: "center",
+            }}
+          >
+            <Link to="applied-jobs" className="btn btn-dark float-right">
+              Show applied jobs
+            </Link>
+          </div>
+        </div>
         <hr />
         {!loading &&
-          jobs &&
-          jobs.length > 0 &&
+        jobs &&
+        jobs.length > 0 &&
+        jobs.filter((job) => job.status === "UnAssigned" && !search(job._id))
+          .length > 0 ? (
           jobs
-            .filter((job) => job.status === "UnAssigned")
+            .filter((job) => job.status === "UnAssigned" && !search(job._id))
             .map((job) => (
               <div className="card mb-3" key={job._id}>
                 <div className="card-body">
@@ -70,23 +103,24 @@ const Jobs = ({
                   <p className="card-text">Expected Salary: {job.salary}</p>
                   <p className="card-text">Location: {job.location}</p>
                   <p className="card-text">Status: Hiring</p>
-                  {appliedjobs && (
+                  {!search(job._id) ? (
                     <button
                       className="btn btn-dark"
                       onClick={() => applyJob(job)}
                     >
                       Apply
                     </button>
+                  ) : (
+                    <small>Already applied for this job !</small>
                   )}
                 </div>
               </div>
-            ))}
+            ))
+        ) : (
+          <center>No available jobs at the moment !</center>
+        )}
       </section>
       <Footer />
-
-      {/* <button type="button" className="btn btn-primary btn-lg">
-        Launch
-      </button> */}
 
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Application form</ModalHeader>

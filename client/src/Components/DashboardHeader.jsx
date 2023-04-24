@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import { logout } from "../actions/auth";
 
 const DashboardHeader = ({ auth: { user, role }, logout }) => {
+  const navigate = useNavigate();
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow">
@@ -59,7 +61,14 @@ const DashboardHeader = ({ auth: { user, role }, logout }) => {
             <span className="navbar-text">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link" onClick={logout} href="#!">
+                  <a
+                    className="nav-link"
+                    onClick={() => {
+                      logout();
+                      navigate("/");
+                    }}
+                    href="#!"
+                  >
                     Logout
                   </a>
                 </li>

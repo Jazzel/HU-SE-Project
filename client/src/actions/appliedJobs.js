@@ -29,9 +29,11 @@ export const applyForJob = (formData) => async (dispatch) => {
 };
 
 // Get all jobs
-export const getAppliedJobs = () => async (dispatch) => {
+export const getAppliedJobs = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`${HOST}/api/jobs/apply`);
+    const res = await axios.get(`${HOST}/api/jobs/apply/${id}`);
+
+    console.log(res.data);
 
     dispatch({
       type: GET_APPLIED_JOBS,
