@@ -27,6 +27,9 @@ import UserDashboard from "./pages/UserDashboard";
 import AddJob from "./pages/AddJob";
 import EditJob from "./pages/EditJob";
 import Job from "./pages/Job";
+import CreateProfile from "./pages/CreateProfile";
+import AddEducation from "./pages/AddEducation";
+import AddExperience from "./pages/AddExperience";
 
 export const HOST = "http://localhost:5001";
 
@@ -79,6 +82,30 @@ const App = () => {
                 element={
                   <AdminRoute>
                     <UserDashboard />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="create-profile"
+                element={
+                  <AdminRoute>
+                    <CreateProfile />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="add-experience"
+                element={
+                  <AdminRoute>
+                    <AddExperience />
+                  </AdminRoute>
+                }
+              />
+              <Route
+                path="add-education"
+                element={
+                  <AdminRoute>
+                    <AddEducation />
                   </AdminRoute>
                 }
               />

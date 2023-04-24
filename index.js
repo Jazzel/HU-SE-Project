@@ -9,7 +9,7 @@ const User = require("./models/User");
 
 const app = express();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 const nodemailer = require("nodemailer");
 
 const config = require("config");
@@ -28,7 +28,11 @@ app.use(express.json({ extended: false }));
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://bizzhome.herokuapp.com"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "https://bizzhome.herokuapp.com",
+    ],
   })
 );
 
@@ -36,6 +40,7 @@ app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
 app.use("/api/contacts", require("./routes/api/contact"));
 app.use("/api/jobs", require("./routes/api/jobs"));
+app.use("/api/profile", require("./routes/api/profile"));
 
 app.post(
   "/api/change-password",

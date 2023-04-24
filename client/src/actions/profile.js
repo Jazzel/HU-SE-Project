@@ -90,7 +90,8 @@ export const createProfile =
       );
 
       if (!edit) {
-        history.push("/dashboard");
+        return true;
+        // history.push("/dashboard");
       }
     } catch (error) {
       const errors = error.response.data.errors;
@@ -118,7 +119,11 @@ export const addExperience = (formData, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.put(`${HOST}/api/profile/experience`, formData, config);
+    const res = await axios.put(
+      `${HOST}/api/profile/experience`,
+      formData,
+      config
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
@@ -152,7 +157,11 @@ export const addEducation = (formData, history) => async (dispatch) => {
       },
     };
 
-    const res = await axios.put(`${HOST}/api/profile/education`, formData, config);
+    const res = await axios.put(
+      `${HOST}/api/profile/education`,
+      formData,
+      config
+    );
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
