@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addEducation } from "../actions/profile";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DashboardHeader from "../Components/DashboardHeader";
 import Footer from "../Components/Footer";
 
@@ -127,9 +127,9 @@ const AddEducation = ({ addEducation, history }) => {
             ></textarea>
           </div>
           <input type="submit" class="btn btn-dark my-1" value="Submit" />
-          <a class="btn btn-light my-1" href="dashboard.html">
+          <Link className="btn btn-light my-1" to="/user-dashboard">
             Go Back
-          </a>
+          </Link>
         </form>
       </section>
       <Footer />
